@@ -29,4 +29,8 @@ public class InventoryPage {
     public String getCartItemsAmount() {
         return WaitUtils.waitForElementVisible(driver, cartBadge).getText();
     }
+
+    public void enterTheCartPage() {
+        WaitUtils.waitForElementClicable(driver, cartIcon).click();
+    }
 }
