@@ -9,15 +9,38 @@ import java.util.List;
 
 public class JsonDataReader {
 
-    @DataProvider(name = "loginData")
-    public static Object[][] getLoginData() throws IOException {
+//    @DataProvider(name = "loginData")
+//    public static Object[][] getLoginData() throws IOException {
+//        ObjectMapper mapper = new ObjectMapper();
+//        File jsonFile = new File("src/test/resources/testdata/login_credentials.json");
+//        List<LoginData> dataList = mapper.readValue(jsonFile, new TypeReference<List<LoginData>>() {});
+//        Object[][] data = new Object[dataList.size()][1];
+//        for(int i=0; i<dataList.size();i++){
+//            data[i][0] = dataList.get(i);
+//        }
+//        return data;
+//    }
+
+    private static Object[][] loadDataFromFile(String filePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        File jsonFile = new File("src/test/resources/testdata/login_credentials.json");
-        List<LoginData> dataList = mapper.readValue(jsonFile, new TypeReference<List<LoginData>>() {});
+        File jsonFile = new File(filePath);
+
+        List<LoginData> dataList = mapper
+                .readValue(jsonFile, new TypeReference<List<LoginData>>() {});
         Object[][] data = new Object[dataList.size()][1];
-        for(int i=0; i<dataList.size();i++){
+        for (int i = 0; i < dataList.size(); i++) {
             data[i][0] = dataList.get(i);
         }
         return data;
+    }
+
+    @DataProvider(name = "correctLoginData")
+    public static Object[][] getCorrectLoginData() throws IOException {
+        return loadDataFromFile("src/test/resources/testdata/correct_login_credentials.json");
+    }
+
+    @DataProvider(name = "wrongLoginData")
+    public static Object[][] getWrongLoginData() throws IOException {
+        return loadDataFromFile("src/test/resources/testdata/wrong_login_credentials.json");
     }
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-    @Test(dataProvider = "loginData", dataProviderClass = JsonDataReader.class)
+    @Test(dataProvider = "wrongLoginData", dataProviderClass = JsonDataReader.class)
     public void wrongLoginTest(LoginData testData) {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -20,5 +20,15 @@ public class LoginTest extends BaseTest {
                 .getErrorMessage();
 
         Assert.assertEquals(actualErrorMessage, testData.getExpectedErrorMessage(), "Zly komunikat bledu");
+    }
+
+    @Test(dataProvider = "correctLoginData", dataProviderClass = JsonDataReader.class)
+    public void loginWithSuccessTest(LoginData testData) {
+        LoginPage loginPage = new LoginPage(driver);
+        boolean isCartVisible = loginPage
+                .loginToAccount(testData.getUsername(), testData.getPassword())
+                .isCartVisible();
+
+        Assert.assertTrue(isCartVisible, "Logowanie nieudane, koszyk nie jest widoczny");
     }
 }

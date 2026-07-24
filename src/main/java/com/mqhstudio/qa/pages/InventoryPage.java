@@ -21,6 +21,10 @@ public class InventoryPage {
         return WaitUtils.waitForElementVisible(driver, productsHeader).isDisplayed();
     }
 
+    public boolean isCartVisible() {
+        return WaitUtils.waitForElementVisible(driver, cartIcon).isDisplayed();
+    }
+
     public InventoryPage addItemToCart(String itemName) {
         By productButton = By.xpath("//div[text()='"+itemName+"']/ancestor::div[@class='inventory_item']//button");
 //        String dynamicLocator = String.format(productAddToCartButtonXpath, itemName);
