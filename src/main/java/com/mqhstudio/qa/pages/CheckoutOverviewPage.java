@@ -12,7 +12,8 @@ public class CheckoutOverviewPage {
         this.driver = driver;
     }
 
-    public void completeOrder() {
+    public CheckoutCompletePage completeOrder() {
         WaitUtils.waitForElementClicable(driver, finishButton).click();
+        return new CheckoutCompletePage(driver);
     }
 }

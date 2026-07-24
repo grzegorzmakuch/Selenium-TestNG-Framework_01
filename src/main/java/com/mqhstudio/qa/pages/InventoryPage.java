@@ -11,7 +11,7 @@ public class InventoryPage {
     private final By cartIcon = By.cssSelector(".shopping_cart_link");
     private final By cartBadge = By.cssSelector(".shopping_cart_badge");
 
-    private final String productAddToCartButtonXpath = "//div[text()='%s']/ancestor::div[@class='inventory_item']//button";
+//    private final String productAddToCartButtonXpath = "//div[text()='%s']/ancestor::div[@class='inventory_item']//button";
 
     public InventoryPage(WebDriver driver) {
         this.driver = driver;
@@ -21,16 +21,19 @@ public class InventoryPage {
         return WaitUtils.waitForElementVisible(driver, productsHeader).isDisplayed();
     }
 
-    public void addItemToCart(String itemName) {
-        String dynamicLocator = String.format(productAddToCartButtonXpath, itemName);
-        WaitUtils.waitForElementClicable(driver, By.xpath(dynamicLocator)).click();
+    public InventoryPage addItemToCart(String itemName) {
+        By productButton = By.xpath("//div[text()='"+itemName+"']/ancestor::div[@class='inventory_item']//button");
+//        String dynamicLocator = String.format(productAddToCartButtonXpath, itemName);
+        WaitUtils.waitForElementClicable(driver, productButton).click();
+        return this;
     }
 
     public String getCartItemsAmount() {
         return WaitUtils.waitForElementVisible(driver, cartBadge).getText();
     }
 
-    public void enterTheCartPage() {
+    public CartPage enterTheCartPage() {
         WaitUtils.waitForElementClicable(driver, cartIcon).click();
+        return new CartPage(driver);
     }
 }

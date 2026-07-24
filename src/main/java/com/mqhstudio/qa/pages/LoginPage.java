@@ -16,25 +16,29 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public void enterUsername(String username) {
+    public LoginPage enterUsername(String username) {
 //        driver.findElement(usernameField).sendKeys(username);
         WaitUtils.waitForElementVisible(driver, usernameField).sendKeys(username);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public LoginPage enterPassword(String password) {
 //        driver.findElement(passwordField).sendKeys(password);
         WaitUtils.waitForElementVisible(driver, passwordField).sendKeys(password);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
 //        driver.findElement(loginButton).click();
         WaitUtils.waitForElementClicable(driver, loginButton).click();
+        return this;
     }
 
-    public void loginToAccount(String username, String password) {
+    public InventoryPage loginToAccount(String username, String password) {
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();
+        return new InventoryPage(driver);
     }
 
     public String getErrorMessage() {

@@ -16,10 +16,11 @@ public class CheckoutInformationPage {
         this.driver = driver;
     }
 
-    public void fillTheClientData(String firstName, String lastName, String postalCode) {
+    public CheckoutOverviewPage fillTheClientData(String firstName, String lastName, String postalCode) {
         WaitUtils.waitForElementVisible(driver, firstNameField).sendKeys(firstName);
         WaitUtils.waitForElementVisible(driver, lastNameField).sendKeys(lastName);
         WaitUtils.waitForElementVisible(driver, postalCodeField).sendKeys(postalCode);
         WaitUtils.waitForElementClicable(driver, continueButton).click();
+        return new CheckoutOverviewPage(driver);
     }
 }

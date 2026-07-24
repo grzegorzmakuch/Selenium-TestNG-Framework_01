@@ -12,7 +12,8 @@ public class CartPage {
         this.driver = driver;
     }
 
-    public void goToCartPage() {
+    public CheckoutInformationPage goToCartPage() {
         WaitUtils.waitForElementClicable(driver, checkoutButton).click();
+        return new CheckoutInformationPage(driver);
     }
 }
