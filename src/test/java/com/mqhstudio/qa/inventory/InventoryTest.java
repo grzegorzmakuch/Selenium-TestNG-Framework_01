@@ -1,12 +1,13 @@
-package com.mqhstudio.qa;
+package com.mqhstudio.qa.inventory;
 
+import com.mqhstudio.qa.BaseTest;
 import com.mqhstudio.qa.pages.InventoryPage;
 import com.mqhstudio.qa.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class InventoryTest extends BaseTest{
+public class InventoryTest extends BaseTest {
 
     private LoginPage loginPage;
     private InventoryPage inventoryPage;

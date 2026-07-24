@@ -1,12 +1,11 @@
-package com.mqhstudio.qa;
+package com.mqhstudio.qa.login;
 
+import com.mqhstudio.qa.BaseTest;
 import com.mqhstudio.qa.pages.LoginPage;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest {
+public class OldLoginTest extends BaseTest {
 
     @org.testng.annotations.DataProvider(name="wrongLoginData")
     public Object[][] dataToFeed() {
